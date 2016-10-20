@@ -18,6 +18,11 @@ import static junit.framework.Assert.assertTrue;
  *
  * @author Tillie
  */
+
+//As a user
+//I want to search for specified products
+//So that I can find desired product more quickly
+
 public class SearchTest extends BaseTest {
     
      /**

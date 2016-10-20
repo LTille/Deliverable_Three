@@ -7,8 +7,6 @@ package OnlineStore;
 
 import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,6 +16,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  *
  * @author Tillie
  */
+
+//As a user
+//I want to use shopping cart
+//So that I manipulate products I want to buy
+
 public class CartTest extends BaseTest {
        
     /**
@@ -42,27 +45,24 @@ public class CartTest extends BaseTest {
      * When I try to update the quantity into 3
      * Then I should see the total price triples
      */
-//   @Test
+   @Test
    public void updatePositiveProductQuatity() throws InterruptedException {
 
         driver.get("http://store.demoqa.com/products-page/product-category/n/");
         driver.findElement(By.name("Buy")).submit();
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         driver.get("http://store.demoqa.com/products-page/checkout/");
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         WebElement quantity = driver.findElement(By.cssSelector("form.adjustform.qty > input[name=\"quantity\"]"));
         quantity.clear();
         quantity.sendKeys("3");
         WebElement update = driver.findElement(By.cssSelector("form.adjustform.qty > input[name=\"submit\"]"));
         update.click();
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-
+        Thread.sleep(50000);
         WebElement price=driver.findElement(By.cssSelector("td.wpsc_product_price.wpsc_product_price_0>span>span"));
-       
+      
         String total = price.getText();
         System.out.print(total);
-        assertEquals("$36.00", total);
-        
+        assertEquals("$36.00", total);   
      }
    
      /**
@@ -71,7 +71,7 @@ public class CartTest extends BaseTest {
      * Then I should see error message
      */
     @Test
-    public void updateNegativeProductQuatity(){
+    public void updateNegativeProductQuatity() throws InterruptedException{
         driver.get("http://store.demoqa.com/products-page/product-category/n/");
         driver.findElement(By.name("Buy")).submit();
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
@@ -82,6 +82,7 @@ public class CartTest extends BaseTest {
         quantity.sendKeys("-1");
         WebElement update = driver.findElement(By.cssSelector("form.adjustform.qty > input[name=\"submit\"]"));
         update.click();
+        Thread.sleep(50000);
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 	WebElement msg = driver.findElement(By.xpath("//*[@id='post-29']/div"));
 	assertEquals("Oops, there is nothing in your cart.", msg.getText());
@@ -92,7 +93,6 @@ public class CartTest extends BaseTest {
      * When I try to remove it from cart
      * Then I should see an empty cart
      */
-     
     @Test
     public void removeProduct() throws InterruptedException{
         driver.get("http://store.demoqa.com/products-page/product-category/n/");
@@ -103,11 +103,10 @@ public class CartTest extends BaseTest {
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         WebElement remove = driver.findElement(By.cssSelector("form.adjustform.remove > input[name=\"submit\"]"));
 	remove.click();
-        Thread.sleep(1200);
+        if(wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("form.adjustform.remove > input[name=\"submit\"]"))));
         WebElement msg = driver.findElement(By.xpath("//*[@id=\"post-29\"]/div"));
         String str =msg.getText();
-        System.out.print(str);
-        assertEquals("Oops, there is nothing in your cart.", msg.getText());
+        assertEquals("Oops, there is nothing in your cart.", str);
       
     } 
 }
