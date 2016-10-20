@@ -35,7 +35,7 @@ User Story 2:
     Scenario 1:
        Given a not existed product name
        When I search the product
-       Then I should see the "*." message
+       Then I should see message informing me no result
 
     Scenario 2:
        Given an existed product name
