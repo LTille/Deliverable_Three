@@ -17,14 +17,14 @@ import org.openqa.selenium.WebElement;
 
 //As a user
 //I want to log in
-//So that buy products
+//So that I can buy products
 
 public class LoginTest extends BaseTest{
    
     /**
      * Given a correct username and correct password
      * When I try to log in with those credentials
-     * Then I should see the "*." greeting message
+     * Then I should see some greeting message
      */
     @Test
     public void testAuthenticationSuccessWhenProvidingGoodCredentials(){
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest{
      /**
      * Given a correct username
      * When I try to log in with those credentials
-     * Then I should see the "Error: The password field is empty" message
+     * Then I should see error message informing me empty field
      */
     @Test
     public void testAuthenticationFailureWhenNotProvidingPassword(){
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest{
     /**
      * Given a incorrect username and incorrect password
      * When I try to log in with those credentials
-     * Then I should see the "Error: Invalid login credentials." message
+     * Then I should see the error credential message
      */
     @Test
     public void testAuthenticationFailureWhenProvidingBadCredentials(){

@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 //As a user
 //I want to use shopping cart
-//So that I manipulate products I want to buy
+//So that I can manipulate products I want to buy
 
 public class CartTest extends BaseTest {
        
