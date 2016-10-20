@@ -28,7 +28,7 @@ public class SearchTest extends BaseTest {
      /**
      * Given a not existed product name
      * When I search the product
-     * Then I should see the "*." message
+     * Then I should see message informing me no result
      */
      @Test
      public void searchNotExistedProduct(){
